@@ -350,6 +350,7 @@ variables = {
         "2: Alguns canais de comunicação estabelecidos e ativos.",
         "3: Diversos canais de comunicação estabelecidos, ativos e com feedback regular."
     ]}
+    ]}
 
 # Título da aplicação Streamlit com cor verde escuro
 st.markdown("<h1 style='color: darkgreen;'>Atributos ODS - ODS 7, 9, 13, 14 e 17</h1>", unsafe_allow_html=True)
