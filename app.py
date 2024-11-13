@@ -12,6 +12,11 @@ def calculate_final_score(scores):
 
 # Função para plotar o gráfico radar com um tamanho maior
 def plot_radar_chart(scores, categories):
+    # Certifique-se de que 'scores' e 'categories' têm o mesmo tamanho
+    if len(scores) != len(categories):
+        st.error("O número de pontuações e categorias não coincide.")
+        return None
+    
     values = scores + scores[:1]  # Repete o primeiro valor para fechar o círculo
     angles = np.linspace(0, 2 * np.pi, len(scores), endpoint=False).tolist()
     angles += angles[:1]  # Repete o primeiro ângulo para fechar o gráfico
