@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -30,7 +29,6 @@ def plot_radar_chart(scores, categories):
     ax.set_xticklabels(categories)
 
     return fig
-
 
 # Definir variáveis agrupadas por ODS com prefixos
 
@@ -395,6 +393,22 @@ def display_ods_tab(ods_group):
     radar_chart = plot_radar_chart(scores, categories)
     if radar_chart:
         st.pyplot(radar_chart)
+
+# Exibe as variáveis e resultados para cada aba
+with tab1:
+    display_ods_tab("ODS 7")
+
+with tab2:
+    display_ods_tab("ODS 9")
+
+with tab3:
+    display_ods_tab("ODS 13")
+
+with tab4:
+    display_ods_tab("ODS 14")
+
+with tab5:
+    display_ods_tab("ODS 17")
 
 # Informações finais do projeto
 st.write("""
