@@ -350,29 +350,46 @@ variables = {
         "2: Alguns canais de comunicação estabelecidos e ativos.",
         "3: Diversos canais de comunicação estabelecidos, ativos e com feedback regular."
     ]}
-]}
 
 # Título da aplicação Streamlit com cor verde escuro
 st.markdown("<h1 style='color: darkgreen;'>Atributos ODS - ODS 7, 9, 13, 14 e 17</h1>", unsafe_allow_html=True)
 
-# Selecione o grupo de variáveis (ODS)
-ods_group = st.selectbox("Selecione o grupo de ODS", list(variables.keys()))
+# Criação de abas para cada ODS
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["ODS 7", "ODS 9", "ODS 13", "ODS 14", "ODS 17"])
 
-# Coleta de pontuações para o grupo selecionado
-scores = []
-categories = []
-for variable in variables[ods_group]:
-    option = st.selectbox(variable["name"], options=variable["options"])
-    scores.append(int(option[0]))  # Converte o primeiro caractere da opção selecionada em inteiro
-    categories.append(variable["name"])
+# Função para exibir conteúdo de cada aba
+def display_ods_tab(ods_group):
+    st.header(f"Avaliação - {ods_group}")
+    scores = []
+    categories = []
+    for variable in variables[ods_group]:
+        option = st.selectbox(variable["name"], options=variable["options"])
+        scores.append(int(option[0]))  # Converte o primeiro caractere da opção selecionada em inteiro
+        categories.append(variable["name"])
 
-# Calcula a pontuação final
-percentage_score = calculate_final_score(scores)
-st.write(f"Pontuação Final para {ods_group}: {percentage_score:.2f}%")
+    # Calcula a pontuação final
+    percentage_score = calculate_final_score(scores)
+    st.write(f"Pontuação Final para {ods_group}: {percentage_score:.2f}%")
 
-# Exibe o gráfico radar
-st.subheader("Gráfico Radar")
-st.pyplot(plot_radar_chart(scores, categories))
+    # Exibe o gráfico radar
+    st.subheader("Gráfico Radar")
+    st.pyplot(plot_radar_chart(scores, categories))
+
+# Exibe as variáveis e resultados para cada aba
+with tab1:
+    display_ods_tab("ODS 7")
+
+with tab2:
+    display_ods_tab("ODS 9")
+
+with tab3:
+    display_ods_tab("ODS 13")
+
+with tab4:
+    display_ods_tab("ODS 14")
+
+with tab5:
+    display_ods_tab("ODS 17")
 
 # Informações finais do projeto
 st.write("""
