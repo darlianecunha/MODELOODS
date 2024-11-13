@@ -13,8 +13,8 @@ def calculate_final_score(scores):
 # Função para plotar o gráfico radar com um tamanho maior
 def plot_radar_chart(scores, categories):
     values = scores + scores[:1]  # Repete o primeiro valor para fechar o círculo
-    angles = np.linspace(0, 2 * np.pi, len(categories), endpoint=False).tolist()
-    angles += angles[:1]
+    angles = np.linspace(0, 2 * np.pi, len(scores), endpoint=False).tolist()
+    angles += angles[:1]  # Repete o primeiro ângulo para fechar o gráfico
 
     # Aumentando o tamanho da figura
     fig, ax = plt.subplots(figsize=(10, 10), subplot_kw=dict(polar=True))
@@ -22,9 +22,10 @@ def plot_radar_chart(scores, categories):
     ax.plot(angles, values, color='teal', linewidth=2)
     ax.set_yticklabels([])
     ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(categories)  # Exibe apenas os números
+    ax.set_xticklabels(categories)
 
     return fig
+
 
 # Definir variáveis agrupadas por ODS com prefixos
 
