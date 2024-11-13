@@ -369,7 +369,7 @@ def display_ods_tab(ods_group):
     for variable in variables[ods_group]:
         option = st.selectbox(variable["name"], options=variable["options"])
         scores.append(int(option[0]))  # Converte o primeiro caractere da opção selecionada em inteiro
-        categories.append(variable["name"])  # Inclui o número como parte do nome
+        prefix = variable["name"].split(" ")[0]  # Extrai o prefixo numérico, como "7.1"
 
     # Calcula a pontuação final
     percentage_score = calculate_final_score(scores)
