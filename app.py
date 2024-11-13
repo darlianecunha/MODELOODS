@@ -15,7 +15,7 @@ def plot_radar_chart(scores, categories):
     angles = np.linspace(0, 2 * np.pi, len(categories), endpoint=False).tolist()
     angles += angles[:1]
 
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
     ax.fill(angles, values, color='teal', alpha=0.25)
     ax.plot(angles, values, color='teal', linewidth=2)
     ax.set_yticklabels([])
