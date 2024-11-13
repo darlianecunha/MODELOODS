@@ -376,7 +376,15 @@ def display_ods_tab(ods_group):
     for variable in variables[ods_group]:
         option = st.selectbox(variable["name"], options=variable["options"])
         scores.append(int(option[0]))  # Converte o primeiro caractere da opção selecionada em inteiro
-        prefix = variable["name"].split(" ")[0]  # Extrai o prefixo numérico, como "7.1"
+        
+        # Extrai apenas o prefixo numérico (exemplo: "7.1") para o gráfico radar
+        prefix = variable["name"].split(" ")[0]
+        categories.append(prefix)
+
+    # Verifique se 'scores' e 'categories' têm o mesmo comprimento antes de prosseguir
+    if len(scores) != len(categories):
+        st.error("Erro: O número de pontuações e categorias não coincide.")
+        return
 
     # Calcula a pontuação final
     percentage_score = calculate_final_score(scores)
@@ -384,23 +392,9 @@ def display_ods_tab(ods_group):
 
     # Exibe o gráfico radar
     st.subheader("Gráfico Radar")
-    st.pyplot(plot_radar_chart(scores, categories))
-
-# Exibe as variáveis e resultados para cada aba
-with tab1:
-    display_ods_tab("ODS 7")
-
-with tab2:
-    display_ods_tab("ODS 9")
-
-with tab3:
-    display_ods_tab("ODS 13")
-
-with tab4:
-    display_ods_tab("ODS 14")
-
-with tab5:
-    display_ods_tab("ODS 17")
+    radar_chart = plot_radar_chart(scores, categories)
+    if radar_chart:
+        st.pyplot(radar_chart)
 
 # Informações finais do projeto
 st.write("""
