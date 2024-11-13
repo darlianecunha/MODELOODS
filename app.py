@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,12 +17,12 @@ def plot_radar_chart(scores, categories):
     angles += angles[:1]
 
     # Aumentando o tamanho da figura
-    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+    fig, ax = plt.subplots(figsize=(10, 10), subplot_kw=dict(polar=True))
     ax.fill(angles, values, color='teal', alpha=0.25)
     ax.plot(angles, values, color='teal', linewidth=2)
     ax.set_yticklabels([])
     ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(categories)
+    ax.set_xticklabels(categories)  # Exibe apenas os números
 
     return fig
 
